@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake Update Progress</title>
+  <style>
+    body {
+          font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+      background-color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #695CFE;
+    }
+
+    #update-container {
+      text-align: center;
+      padding: 100%;
+      background-color: #242526;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #update-container h2 {
+      margin-bottom: 10px;
+      color: #ffff;
+    }
+
+    #file-size-label {
+      margin-top: 100px;
+      color: #ffff;
+    }
+
+    #progress-bar-container {
+      width: 500px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      width: 0;
+      height: 30px;
+      background-color: #695CFE;
+      transition: width 0.3s ease;
+    }
+
+    #progress-label {
+      margin-top: 10px;
+      color: #ffff;
+    }
+
+    #redirect-message {
+      display: none;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #695CFE;
+    }
+
+    #start-button {
+      background-color: #695CFE;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="update-container">
+  <h2>FUSION Software Update</h2>
+  <p id="file-size-label">Update Size: <span id="file-size">50 MB</span></p>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
+  <p id="progress-label">0% Complete</p>
+  <p id="redirect-message">Verifying...</p>
+</div>
+
+<script>
+  function startUpdate() {
+    const isFirstVisit = !localStorage.getItem("visited");
+
+    if (isFirstVisit) {
+      localStorage.setItem("visited", "true");
+      simulateUpdate();
+    } else {
+      window.location.href = 'https://fusion.sumibi.org'; // Replace with your desired URL
+    }
+  }
+
+  function simulateUpdate() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+    const redirectMessage = document.getElementById('redirect-message');
+    const fileSizeLabel = document.getElementById('file-size');
+
+    let progress = 0;
+    const fileSize = 50; // Simulated file size in MB
+    fileSizeLabel.innerText = `${fileSize} MB`;
+
+    const interval = setInterval(() => {
+      progress += Math.random() * 10;
+      progressBar.style.width = `${Math.min(progress, 100)}%`;
+      progressLabel.innerText = `${Math.min(progress, 100).toFixed(1)}% Complete`;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        redirectMessage.style.display = 'block';
+        setTimeout(() => {
+          window.location.href = 'https://fusion.sumibi.org'; // Replace with your desired URL
+        }, 2000);
+      }
+    }, 500);
+  }
+
+  // Call startUpdate function automatically when the page is loaded
+  startUpdate();
+</script>
+
+</body>
+</html>

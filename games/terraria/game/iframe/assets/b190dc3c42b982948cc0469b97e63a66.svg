@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="481.51290168146" height="361.01290168146" viewBox="-0.006450840729987917 -0.5064508407299879 481.51290168146 361.01290168146">
+  <!-- Exported by Scratch - http://scratch.mit.edu/ -->
+  <path id="ID0.47223766800016165" fill="#000000" stroke="none" d="M 460.5 0 L 481 0 L 481 360 L 460.5 360 L 460.5 0 Z " stroke-width="1"/>
+  <path id="ID0.47223766800016165" fill="#000000" stroke="none" d="M 0.75 0 L 21.25 0 L 21.25 360 L 0.75 360 L 0.75 0 Z " stroke-width="1"/>
+  <path id="ID0.4495767676271498" fill="#000000" stroke="none" d="M 1 0 L 481 0 L 481 20 L 1 20 L 1 0 Z " stroke-width="1.0129016814599758"/>
+  <path id="ID0.4495767676271498" fill="#000000" stroke="none" d="M 0.5 340 L 480.5 340 L 480.5 360 L 0.5 360 L 0.5 340 Z " stroke-width="1.0129016814599758"/>
+  <g id="ID0.806846949737519">
+    <text id="ID0.5203834758140147" fill="#002699" text-anchor="start" font-family="Serif" font-size="22" transform="matrix(0.618834 0 0 0.618834 347.538 27.8247)" stroke-width="1" alignment-baseline="text-before-edge" xml:space="preserve"><tspan x="0" style="white-space: pre" dy="1.25em">Players</tspan></text>
+    <text id="ID0.5203834758140147" fill="#FFFFFF" text-anchor="start" font-family="Serif" font-size="22" transform="matrix(0.618834 0 0 0.618834 346.538 26.5247)" stroke-width="1" alignment-baseline="text-before-edge" xml:space="preserve"><tspan x="0" style="white-space: pre" dy="1.25em">Players</tspan></text>
+  </g>
+  <text id="ID0.3021713304333389" fill="#B2B2B2" text-anchor="start" font-family="Sans Serif" font-size="22" transform="matrix(0.507548 0 0 0.507548 35.6151 1.47736)" stroke-width="1" alignment-baseline="text-before-edge" xml:space="preserve"><tspan x="0" style="white-space: pre" dy="1.13em">Inventory (E to open)</tspan></text>
+</svg>

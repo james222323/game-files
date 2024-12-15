@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title></title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+    <script>
+        function checkIframeContent() {
+            var iframe = document.getElementById('infinitecraft');
+            var blockedURL = 'https://neal.fun/';
+
+            iframe.onload = function() {
+                var iframeURL = new URL(iframe.src);
+                var blockedURLPattern = new RegExp(blockedURL);
+
+                if (blockedURL.test(iframeURL.href)) {
+                    // Redirect to a safe URL
+                    iframe.src = 'https://neal.fun/infinite-craft/';
+                }
+            };
+        }
+    </script>
+</head>
+<body onload="checkIframeContent()">
+
+    <iframe 
+        id="infinitecraft"
+        width="600" 
+        height="400" 
+        src="https://neal.fun/infinite-craft/"
+    ></iframe>
+
+</body>
+</html>

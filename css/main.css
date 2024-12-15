@@ -1,0 +1,450 @@
+body {
+    background-color: #0C0D14;
+    color: #ecf0f1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: rgba(40, 41, 61, 0.9);
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+    line-height: 10px;
+    margin: 5px 0;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+nav a.active {
+    color: #3498db;
+    background-color: #2c3e50;
+    transform: translateX(5px);
+}
+
+nav a:hover {
+    transform: translateX(5px);
+    color: #8668FF;
+}
+
+nav a i {
+    margin-right: 10px;
+}
+
+.logo img {
+    max-width: 45px;
+    height: 35px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+nav a:hover {
+    color: #8668FF;
+}
+
+.game-link {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #ecf0f1;
+    transition: transform 0.3s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.game-link img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.game-link:hover {
+    transform: scale(1.1);
+    color: #3498db;
+    font-family: 'Montserrat', sans-serif;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    margin-left: 80px;
+    width: calc(100% - 80px);
+    z-index: 1;
+    margin-top: 100px;
+}
+
+.game-link {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #ecf0f1; /* Light Grey */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.game-link img {
+    width: 200px; /* Adjust the width based on your design */
+    height: auto;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    background-color: #0C0D14; /* Deeper Dark Grey */
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1; /* Set z-index to ensure it's below the nav bar */
+}
+
+*{
+    margin:0 
+ }
+ html{
+    scroll-behavior:smooth 
+ }
+ body{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    background-color:#0C0D14;
+    color:#fff;
+    overflow-x:hidden 
+ }
+ html,body,canvas{
+    background-color: #0C0D14;
+    position:middle;
+    background-image: url('../');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+ }
+ #games{
+    display:none;
+    grid-template-columns:.1fr .1fr;
+    margin-left:1.1vw;
+    gap: 3vmin;
+    margin-bottom:1.5vw;
+    margin-top: 5vw;
+    animation:fadeIn 0.68s ease-in-out 
+ }
+ @keyframes fadeIn{
+    0%{
+        opacity:0 
+   }
+    100%{
+        opacity:1 
+   }
+ }
+ .game{
+    display:flex;
+    background-color:#171717;
+    padding:1vw;
+    width:46vw;
+    transition: .5s;
+    box-shadow: 0 0 1vw 0 #171717;
+    border-radius:10px;
+    overflow:hidden 
+ }
+ .game:hover{
+    outline: .3vw solid #8668FF;
+ }
+ .game #game-content{
+    margin-left:.8vw;
+    text-overflow:ellipsis 
+ }
+ .game h1{
+    font-size:2.1vw;
+    font-weight:700;
+    margin-bottom:.5vw 
+ }
+ .game p{
+    font-size:1.2vw;
+    width:34vw;
+    font-weight:400 
+ }
+ .game .gameicon{
+    display:flex;
+    height:10vw;
+    width:10vw;
+    border-radius:10px;
+    user-select:none;
+ }
+ .game #game-content button{
+    background: linear-gradient(45deg, #8668FF, #8668FF);
+    border-radius: 10px;
+    color:#fff;
+    font-size:1.5vw;
+    padding:.5vw 3vw;
+    margin-top:1vw;
+    cursor:pointer;
+    transition:.2s;
+    margin-left:auto;
+    user-select:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+    border: 0;
+ }
+ .game #game-content button:hover{
+    background: linear-gradient(45deg, #fff, #fff);
+    color:#8668FF
+ }
+ .game #game-content button:active{
+    transform: scaleX(.9) scaleY(.9);
+ }
+ .navlogo {
+    height: 1.9vw;
+    margin-left: 25px;
+ }
+ .tgcnavbar {
+    height: 25px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+ }
+ nav.tgcnavbar.transparent {
+    background-color: rgba(40, 41, 61, 0.5); /* Dark Grey with 50% opacity */
+}
+ .navbuttons {
+    display: flex;
+    justify-content: left;
+    height: 100%;
+    align-items: center;
+    gap: 1px;
+ }
+ #clock {
+    position: absolute;
+    right: 15px;
+    user-select: none;
+    transition: transform 0.5s;
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    padding: 10px 8px;
+ }
+ .navbutton {
+    padding: 10px 8px;
+    font-size: 16px;
+    background: transparent;
+    cursor: pointer;
+    user-select: none;
+    color: #FFFFFF;
+    transition: color 0.3s ease-in-out;
+    font-weight: 500;
+    margin-left: 10px;
+ }
+ .navbutton:hover {
+    color: #616161;
+ }
+ a {
+    text-decoration: none;
+    color: #FFFFFF;
+ }
+ .title {
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
+ }
+ ::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.5rem;
+ }
+ ::-webkit-scrollbar-track {
+    background: #171717;
+ }
+ ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #949292, #616161);
+    border-radius:8px;
+ }
+ .gamechoice{
+    background: linear-gradient(45deg, #949292, #616161);
+    border-radius: 10px;
+    color:#fff;
+    font-size:1.5vw;
+    padding:.4vw 1.8vw;
+    margin-top:1vw;
+    cursor:pointer;
+    transition:.2s;
+    margin-left:auto;
+    user-select:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+    border: 0;
+    transition: transform .32s ease-in-out;
+    margin-left: .4vw;
+ }
+ .gamechoice:hover {
+    transform: scaleX(1.05) scaleY(1.05);
+ }
+ .seperate {
+    background-color: gray;
+    height: .27vw;
+    width: 85vw;
+    margin-top: 1vw;
+    border-radius: 15vw;
+ }
+ .randomgamechoice {
+    background: linear-gradient(45deg, #949292, #616161);
+    border-radius: 10px;
+    color:#fff;
+    font-size:1.5vw;
+    padding:.4vw 1.8vw;
+    margin-top:1.4vw;
+    cursor:pointer;
+    transition:.2s;
+    margin-left:auto;
+    user-select:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    transition: 0.3s ease-in-out;
+    border: 0;
+    transition: transform .32s ease-in-out;
+ }
+ .randomgamechoice:hover {
+    transform: scaleX(1.05) scaleY(1.05);
+ }
+
+ .socialsbutton {
+    cursor: pointer;
+    height: 1.9vw;
+    width: 1.9vw;
+    transition: transform .3s ease-in-out;
+    margin-left: 0.2vw;
+    margin-top: 0.5vw;
+ }
+ .socialsbutton:hover {
+    transform: scaleX(1.1) scaleY(1.1) 
+ }
+ #backtogame {
+    display: none;
+    position: fixed;
+    bottom: 1vw;
+    right: 1.25vw;
+    z-index: 99;
+    background: linear-gradient(45deg, #8668FF, #8668FF);
+    border-radius: 13vw;
+    color:#fff;
+    font-size:1.5vw;
+    font-weight:500;
+    margin-top:1.4vw;
+    cursor:pointer;
+    transition:.2s;
+    margin-left:auto;
+    user-select:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border: 0;
+    height: 3.5vw;
+    animation-duration: 1.5s;
+    animation-iteration-count: 5;
+    animation-name: bounce;
+    animation-timing-function: ease;
+    width: auto;
+ }
+ @keyframes bounce {
+    0% {
+        transform: scale(1, 1) translateY(0px);
+   }
+    10% {
+        transform: scale(1.03, 0.97) translateY(0px);
+   }
+    30% {
+        transform: scale(0.97, 1.03) translateY(-30px);
+   }
+    50% {
+        transform: scale(1, 1) translateY(0px);
+   }
+    57% {
+        transform: scale(1, 1) translateY(-3px);
+   }
+    64% {
+        transform: scale(1, 1) translateY(0px);
+   }
+    100% {
+        transform: scale(1, 1) translateY(0px);
+   }
+ }
+ 
+
+ .search-container {
+   margin: 20px 0;
+   text-align: center;
+   position: relative;
+   animation: fadeInUp 0.5s ease-out; /* Add animation */
+}
+
+input[type="text"] {
+   padding: 15px;
+   width: 50px;
+   border-radius: 25px; /* Make it round */
+   outline: none;
+   background-color: #ccc; /* Grey background color */
+   font-family: 'Montserrat', sans-serif; /* Use Montserrat Bold font */
+   color: #ffffff;
+   transition: width 0.3s ease-out; /* Add transition */
+}
+
+button {
+   padding: 8px;
+   cursor: pointer;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+   from {
+       opacity: 0;
+       transform: translateY(20px);
+   }
+   to {
+       opacity: 1;
+       transform: translateY(0);
+   }
+}
+
+/* Add hover effect for the search input */
+input[type="text"]:focus {
+   width: 300px;
+}
+
+/* Add styles for the no games found message */
+.no-games-found {
+   text-align: center;
+   font-size: 18px;
+   color: #ff0000; /* Red color */
+   margin-top: 20px;
+}

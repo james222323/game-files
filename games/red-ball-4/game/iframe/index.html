@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: 0;
+    }
+
+    #black-bars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10%; /* Adjust the height of the top black bar */
+      background-color: black;
+      z-index: 1;
+    }
+
+    #bottom-black-bars {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10%; /* Adjust the height of the bottom black bar */
+      background-color: black;
+      z-index: 1;
+    }
+
+    #left-black-bars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 23%; /* Adjust the width of the left black bar */
+      height: 100vh;
+      background-color: black;
+      z-index: 1;
+    }
+
+    #right-black-bars {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 23%; /* Adjust the width of the right black bar */
+      height: 100vh;
+      background-color: black;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="black-bars"></div>
+  <div id="left-black-bars"></div>
+  <iframe src="game.html" title="Embedded Page"></iframe>
+  <div id="right-black-bars"></div>
+  <div id="bottom-black-bars"></div>
+
+</body>
+</html>
