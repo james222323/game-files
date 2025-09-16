@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
 
     <!-- Set the title bar of the page -->
-    <title>Retro Bowl | 𝙉𝙖𝙩𝙞𝙫𝙚</title>
+    <title>Retro Bowl</title>
    <script>
   if (typeof navigator.serviceWorker !== 'undefined') {
     navigator.serviceWorker.register('sw.js')
@@ -94,6 +94,42 @@
     <script src="js/panickey.js"></script>
     <script>
       window.onload = GameMaker_Init;
+    </script>
+
+    <!-- Cheat script: runs only when user presses Ctrl+I -->
+    <script>
+      (function() {
+        function tryCheat() {
+          const key = "RetroBowl.0.savedata.ini";
+          if (localStorage.getItem(key)) {
+            let z = prompt("how many credits do you have right now (please input correct number)");
+            if (z !== null) {
+              localStorage.setItem(
+                key,
+                localStorage.getItem(key).replace(`coach_credit="${z}"`, 'coach_credit="999999999999"')
+              );
+              window.location = window.location; // reload page
+            }
+          } else {
+            alert("you must open up a new game save first!");
+          }
+        }
+
+        function onKeyDown(e) {
+          const inEditable =
+            e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable);
+          if (inEditable) return;
+
+          const isCtrlI = (e.ctrlKey || e.metaKey) && e.key && e.key.toLowerCase() === "i";
+          if (isCtrlI) {
+            e.preventDefault();
+            tryCheat();
+            window.removeEventListener("keydown", onKeyDown, true);
+          }
+        }
+
+        window.addEventListener("keydown", onKeyDown, true);
+      })();
     </script>
   </body>
 </html>
