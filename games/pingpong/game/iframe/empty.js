@@ -1,0 +1,1 @@
+No Content: https://w8.snokido.com/games/html5/ping-pong-go/empty.js
