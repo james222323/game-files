@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Speedrun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f0f23;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Main Menu Styles */
+        .menu-container {
+            background: #0f0f23;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .menu-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            padding: 50px;
+            border: 3px solid #667eea;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .subtitle {
+            color: #a0aec0;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .challenge-box {
+            background: rgba(102, 126, 234, 0.15);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .challenge-box h2 {
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            color: #4facfe;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .articles {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .article {
+            background: rgba(102, 126, 234, 0.3);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ffffff;
+            border: 2px solid #667eea;
+            min-width: 200px;
+        }
+
+        .arrow {
+            font-size: 2.5em;
+            color: #667eea;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: 2px solid #667eea;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            background: #7c8ef5;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ffffff;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Game Screen Styles */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #0f0f23;
+        }
+
+        .game-hud {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 3px solid #667eea;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .hud-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .challenge-display {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(102, 126, 234, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+        }
+
+        .challenge-article {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 15px;
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 8px;
+        }
+
+        .challenge-arrow {
+            color: #667eea;
+            font-size: 1.5em;
+        }
+
+        .stat-box {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4facfe;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+        }
+
+        .stat-label {
+            color: #a0aec0;
+            font-size: 0.85em;
+            margin-top: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hud-btn {
+            background: rgba(102, 126, 234, 0.3);
+            color: white;
+            border: 2px solid #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hud-btn:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hud-btn.danger {
+            border-color: #f56565;
+            background: rgba(245, 101, 101, 0.2);
+        }
+
+        .hud-btn.danger:hover {
+            background: #f56565;
+        }
+
+        .game-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+        }
+
+        /* Victory Screen */
+        .victory-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .victory-box {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: scaleIn 0.5s ease;
+            max-width: 500px;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .victory-box h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .victory-stats {
+            font-size: 1.5em;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .victory-box button {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Rules Screen */
+        .rules-container {
+            background: #0f0f23;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .rules-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            border: 3px solid #667eea;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .rules-box h2 {
+            color: #4facfe;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+        }
+
+        .rules-box p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .rules-box p strong {
+            color: #4facfe;
+        }
+
+        @media (max-width: 768px) {
+            .game-hud {
+                padding: 10px 15px;
+            }
+            
+            .challenge-display {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-box {
+                min-width: 90px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="mainMenu" class="menu-container">
+        <div class="menu-box">
+            <div class="header">
+                <h1>Wikipedia Speedrun</h1>
+                <p class="subtitle">Navigate from one article to another as fast as you can!</p>
+            </div>
+
+            <div class="challenge-box">
+                <h2>Your Challenge</h2>
+                <div class="articles">
+                    <div class="article" id="startArticle">Loading...</div>
+                    <div class="arrow">→</div>
+                    <div class="article" id="endArticle">Loading...</div>
+                </div>
+                <button onclick="startGame()">Start Speedrun</button>
+                <button onclick="generateNewChallenge()">New Challenge</button>
+            </div>
+
+            <div class="options">
+                <button class="option-btn" onclick="showRules()">📋 How to Play</button>
+                <button class="option-btn" onclick="showLeaderboard()">🏆 Best Times</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="game-container hidden">
+        <div class="game-hud">
+            <div class="hud-section">
+                <div class="challenge-display">
+                    <div class="challenge-article" id="currentStart">Start</div>
+                    <div class="challenge-arrow">→</div>
+                    <div class="challenge-article" id="currentEnd">End</div>
+                </div>
+            </div>
+            
+            <div class="hud-section">
+                <div class="stat-box">
+                    <div class="stat-value" id="timer">0:00</div>
+                    <div class="stat-label">Time</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="clicks">0</div>
+                    <div class="stat-label">Clicks</div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button class="hud-btn" onclick="resetGame()">↻ Restart</button>
+                <button class="hud-btn danger" onclick="endGame()">✕ Give Up</button>
+            </div>
+        </div>
+
+        <iframe id="wikiFrame" class="game-frame" src=""></iframe>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victoryScreen" class="victory-overlay hidden">
+        <div class="victory-box">
+            <h2>🎉 Victory!</h2>
+            <div class="victory-stats">⏱️ Time: <span id="finalTime">0:00</span></div>
+            <div class="victory-stats">🖱️ Clicks: <span id="finalClicks">0</span></div>
+            <button onclick="backToMenu()">🏠 Back to Menu</button>
+            <button onclick="playAgain()">🎮 Play Again</button>
+        </div>
+    </div>
+
+    <!-- Rules Screen -->
+    <div id="rulesScreen" class="rules-container hidden">
+        <div class="rules-box">
+            <h2>📋 How to Play</h2>
+            <p><strong>1.</strong> You'll be given a starting Wikipedia article and a target article.</p>
+            <p><strong>2.</strong> Click "Start Speedrun" to begin your journey.</p>
+            <p><strong>3.</strong> Navigate through Wikipedia by clicking links within articles.</p>
+            <p><strong>4.</strong> Try to reach the target article as quickly as possible!</p>
+            <p><strong>5.</strong> Your time and number of clicks are tracked in real-time.</p>
+            <p style="color: #e53e3e; font-weight: bold;">⚠️ Only links within the article content count - no searching or using the sidebar!</p>
+            <button onclick="backToMenu()">← Back to Menu</button>
+        </div>
+    </div>
+
+    <script>
+        const popularArticles = [
+            "United_States", "World_War_II", "India", "United_Kingdom", "China",
+            "France", "Germany", "Japan", "Canada", "Australia", "Spain", "Italy",
+            "Russia", "Brazil", "Mexico", "Donald_Trump", "Joe_Biden", "Wikipedia",
+            "YouTube", "Google", "Facebook", "Apple_Inc.", "Microsoft", "Amazon_(company)",
+            "The_Beatles", "Michael_Jackson", "Elvis_Presley", "Leonardo_da_Vinci",
+            "Albert_Einstein", "Isaac_Newton", "William_Shakespeare", "Napoleon",
+            "Adolf_Hitler", "Abraham_Lincoln", "George_Washington", "Julius_Caesar",
+            "Alexander_the_Great", "Cleopatra", "Earth", "Sun", "Moon", "Mars",
+            "Solar_System", "Universe", "Big_Bang", "Evolution", "DNA", "Photosynthesis",
+            "Water", "Climate_change", "COVID-19_pandemic", "World_War_I", 
+            "American_Civil_War", "Roman_Empire", "Ancient_Greece", "Ancient_Egypt",
+            "Renaissance", "Industrial_Revolution", "Cold_War", "French_Revolution",
+            "Christianity", "Islam", "Buddhism", "Hinduism", "Judaism", "Philosophy",
+            "Psychology", "Sociology", "Economics", "Physics", "Chemistry", "Biology",
+            "Mathematics", "Computer_science", "Artificial_intelligence", "Internet",
+            "English_language", "Spanish_language", "Mandarin_Chinese", "Latin",
+            "Soccer", "Basketball", "Baseball", "Cricket", "Tennis", "Olympic_Games",
+            "FIFA_World_Cup", "Super_Bowl", "UEFA_Champions_League", "Star_Wars",
+            "Marvel_Cinematic_Universe", "Harry_Potter", "The_Lord_of_the_Rings",
+            "Game_of_Thrones", "Friends_(TV_series)", "Breaking_Bad", "The_Simpsons"
+        ];
+
+        let startArticle, endArticle;
+        let gameStartTime, timerInterval;
+        let clickCount = 0;
+        let bestTimes = [];
+
+        function getRandomArticle() {
+            return popularArticles[Math.floor(Math.random() * popularArticles.length)];
+        }
+
+        function generateNewChallenge() {
+            do {
+                startArticle = getRandomArticle();
+                endArticle = getRandomArticle();
+            } while (startArticle === endArticle);
+
+            document.getElementById('startArticle').textContent = startArticle.replace(/_/g, ' ');
+            document.getElementById('endArticle').textContent = endArticle.replace(/_/g, ' ');
+        }
+
+        function startGame() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            
+            document.getElementById('currentStart').textContent = startArticle.replace(/_/g, ' ');
+            document.getElementById('currentEnd').textContent = endArticle.replace(/_/g, ' ');
+            
+            clickCount = 0;
+            document.getElementById('clicks').textContent = clickCount;
+            
+            gameStartTime = Date.now();
+            timerInterval = setInterval(updateTimer, 100);
+            
+            const iframe = document.getElementById('wikiFrame');
+            iframe.src = `https://en.wikipedia.org/wiki/${startArticle}`;
+            
+            iframe.onload = function() {
+                checkVictory();
+                clickCount++;
+                document.getElementById('clicks').textContent = clickCount;
+            };
+        }
+
+        function updateTimer() {
+            const elapsed = Date.now() - gameStartTime;
+            const seconds = Math.floor(elapsed / 1000);
+            const deciseconds = Math.floor((elapsed % 1000) / 100);
+            document.getElementById('timer').textContent = `${seconds}:${deciseconds}`;
+        }
+
+        function checkVictory() {
+            const iframe = document.getElementById('wikiFrame');
+            try {
+                const currentUrl = iframe.contentWindow.location.href;
+                if (currentUrl.includes(endArticle)) {
+                    clearInterval(timerInterval);
+                    showVictory();
+                }
+            } catch (e) {
+                // Cross-origin restriction
+            }
+        }
+
+        function showVictory() {
+            const finalTime = document.getElementById('timer').textContent;
+            document.getElementById('finalTime').textContent = finalTime;
+            document.getElementById('finalClicks').textContent = clickCount;
+            
+            document.getElementById('victoryScreen').classList.remove('hidden');
+            
+            bestTimes.push({
+                time: finalTime,
+                clicks: clickCount,
+                route: `${startArticle} → ${endArticle}`
+            });
+            bestTimes.sort((a, b) => {
+                const aSeconds = parseFloat(a.time.replace(':', '.'));
+                const bSeconds = parseFloat(b.time.replace(':', '.'));
+                return aSeconds - bSeconds;
+            });
+            bestTimes = bestTimes.slice(0, 10);
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            backToMenu();
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            startGame();
+        }
+
+        function backToMenu() {
+            clearInterval(timerInterval);
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('victoryScreen').classList.add('hidden');
+            document.getElementById('rulesScreen').classList.add('hidden');
+            document.getElementById('mainMenu').classList.remove('hidden');
+            generateNewChallenge();
+        }
+
+        function playAgain() {
+            generateNewChallenge();
+            document.getElementById('victoryScreen').classList.add('hidden');
+            startGame();
+        }
+
+        function showRules() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('rulesScreen').classList.remove('hidden');
+        }
+
+        function showLeaderboard() {
+            if (bestTimes.length === 0) {
+                alert('🏆 No times recorded yet!\n\nPlay a game to set your first record!');
+                return;
+            }
+            let leaderboardText = '🏆 YOUR BEST TIMES 🏆\n\n';
+            bestTimes.forEach((time, index) => {
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '  ';
+                leaderboardText += `${medal} ${index + 1}. ${time.time}s - ${time.clicks} clicks\n    ${time.route.replace(/_/g, ' ')}\n\n`;
+            });
+            alert(leaderboardText);
+        }
+
+        // Initialize
+        generateNewChallenge();
+
+        // TEST FUNCTION - Call this in console to instantly win
+        function testWin() {
+            if (document.getElementById('gameScreen').classList.contains('hidden')) {
+                console.log('❌ Start a game first!');
+                return;
+            }
+            clearInterval(timerInterval);
+            clickCount = 15;
+            gameStartTime = Date.now() - 42000; // 42 seconds ago
+            updateTimer();
+            document.getElementById('clicks').textContent = clickCount;
+            showVictory();
+            console.log('🎉 Test victory triggered!');
+        }
+        
+        // Make it available globally for console access
+        window.testWin = testWin;
+    </script>
+</body>
+</html>

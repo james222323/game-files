@@ -1,0 +1,124 @@
+<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="300" fill="#0f0f23"/>
+  
+  <!-- Background grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="50" x2="1200" y2="50" stroke="#667eea" stroke-width="1"/>
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="#667eea" stroke-width="1"/>
+    <line x1="0" y1="150" x2="1200" y2="150" stroke="#667eea" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#667eea" stroke-width="1"/>
+    <line x1="0" y1="250" x2="1200" y2="250" stroke="#667eea" stroke-width="1"/>
+  </g>
+  
+  <!-- Speed lines background -->
+  <g opacity="0.3">
+    <line x1="0" y1="80" x2="400" y2="80" stroke="#4facfe" stroke-width="2"/>
+    <line x1="0" y1="140" x2="350" y2="140" stroke="#667eea" stroke-width="2"/>
+    <line x1="0" y1="200" x2="300" y2="200" stroke="#4facfe" stroke-width="2"/>
+    <line x1="800" y1="100" x2="1200" y2="100" stroke="#667eea" stroke-width="2"/>
+    <line x1="850" y1="160" x2="1200" y2="160" stroke="#4facfe" stroke-width="2"/>
+    <line x1="900" y1="220" x2="1200" y2="220" stroke="#667eea" stroke-width="2"/>
+  </g>
+  
+  <!-- Left icon - Stopwatch/Timer -->
+  <g transform="translate(80, 150)" filter="url(#strongGlow)">
+    <!-- Stopwatch body -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#textGradient)" stroke-width="4"/>
+    <circle cx="0" cy="0" r="42" fill="none" stroke="#4facfe" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Stopwatch button -->
+    <rect x="-8" y="-65" width="16" height="10" rx="3" fill="#4facfe"/>
+    
+    <!-- Clock hands -->
+    <line x1="0" y1="0" x2="0" y2="-25" stroke="#00f2fe" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="18" y2="12" stroke="#00f2fe" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="4" fill="#00f2fe"/>
+    
+    <!-- Speed effect lines -->
+    <line x1="-70" y1="-10" x2="-55" y2="-10" stroke="#4facfe" stroke-width="2" opacity="0.7"/>
+    <line x1="-70" y1="0" x2="-58" y2="0" stroke="#4facfe" stroke-width="2" opacity="0.7"/>
+    <line x1="-70" y1="10" x2="-55" y2="10" stroke="#4facfe" stroke-width="2" opacity="0.7"/>
+  </g>
+  
+  <!-- Main text - WIKIPEDIA -->
+  <text x="600" y="130" font-family="Arial, sans-serif" font-size="70" font-weight="bold" 
+        fill="url(#textGradient)" text-anchor="middle" filter="url(#glow)">
+    WIKIPEDIA
+  </text>
+  
+  <!-- Main text - SPEEDRUN -->
+  <text x="600" y="210" font-family="Arial, sans-serif" font-size="70" font-weight="bold" 
+        fill="url(#textGradient)" text-anchor="middle" filter="url(#glow)" font-style="italic">
+    SPEEDRUN
+  </text>
+  
+  <!-- Right icon - Wikipedia puzzle globe with speed effect -->
+  <g transform="translate(1100, 150)" filter="url(#strongGlow)">
+    <!-- Globe outline -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#textGradient)" stroke-width="4"/>
+    
+    <!-- Puzzle pieces (simplified W pattern) -->
+    <g fill="#4facfe">
+      <!-- Top piece -->
+      <path d="M -15,-30 L -5,-30 L -5,-15 L -15,-15 Z" opacity="0.8"/>
+      <path d="M 5,-30 L 15,-30 L 15,-15 L 5,-15 Z" opacity="0.8"/>
+      
+      <!-- Middle pieces -->
+      <path d="M -25,-10 L -10,-10 L -10,5 L -25,5 Z" opacity="0.9"/>
+      <path d="M -5,-10 L 5,-10 L 5,5 L -5,5 Z" opacity="0.9"/>
+      <path d="M 10,-10 L 25,-10 L 25,5 L 10,5 Z" opacity="0.9"/>
+      
+      <!-- Bottom pieces -->
+      <path d="M -20,10 L -5,10 L -5,25 L -20,25 Z" opacity="0.8"/>
+      <path d="M 5,10 L 20,10 L 20,25 L 5,25 Z" opacity="0.8"/>
+    </g>
+    
+    <!-- "W" character overlay -->
+    <text x="0" y="15" font-family="Georgia, serif" font-size="50" font-weight="bold" 
+          fill="#00f2fe" text-anchor="middle" opacity="0.6">W</text>
+    
+    <!-- Motion trails -->
+    <g opacity="0.6">
+      <line x1="60" y1="-15" x2="80" y2="-15" stroke="#4facfe" stroke-width="3" stroke-linecap="round"/>
+      <line x1="60" y1="0" x2="85" y2="0" stroke="#00f2fe" stroke-width="3" stroke-linecap="round"/>
+      <line x1="60" y1="15" x2="80" y2="15" stroke="#4facfe" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Particle effects -->
+    <circle cx="70" cy="-20" r="2" fill="#00f2fe" opacity="0.8"/>
+    <circle cx="80" cy="-8" r="2" fill="#4facfe" opacity="0.8"/>
+    <circle cx="75" cy="20" r="2" fill="#00f2fe" opacity="0.8"/>
+  </g>
+  
+  <!-- Accent glow at bottom -->
+  <rect x="0" y="280" width="1200" height="20" fill="url(#textGradient)" opacity="0.3"/>
+</svg>
