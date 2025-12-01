@@ -1,21 +1,49 @@
 <title>Basketball Stars</title>
 <link rel="stylesheet" href="../../../css/game.css" />
+
 <a href="#" data-custom onclick=""></a>
+
 <div class="loader">
   <div class="loader-logo">
-    <iframe src="../../../loader/image.index.html" frameBorder="0"></iframe>
+    <iframe src="../../../loader/image.index.html" frameborder="0"></iframe>
   </div>
   <div class="loader-bar"></div>
 </div>
+
 <div class="loaded-overlay"></div>
+
 <script src="../../../js/loader.js"></script>
+
 <div class="tgcgame">
   <div class="game">
     <div class="gameiframe">
-      <iframe id="gameframe" allowfullscreen="" allow="autoplay; fullscreen; camera; focus-without-user-activation *; monetization; gamepad; keyboard-map *; xr-spatial-tracking; clipboard-write" scrolling="no" class="iframe" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-scripts allow-same-origin allow-downloads" 
-      src="iframe/index.html">
-    </iframe>
-    <script src="../../../../iframes/sitelock.js"></script>
-    <script src="js/panickey.js"></script>
+
+      <!-- FINAL WORKING IFRAME -->
+      <iframe
+        id="gameframe"
+        class="iframe"
+        src="iframe/index.html"
+        scrolling="no"
+
+        allow="autoplay; fullscreen; gamepad; xr-spatial-tracking; clipboard-write"
+
+        sandbox="
+          allow-forms
+          allow-modals
+          allow-orientation-lock
+          allow-pointer-lock
+          allow-popups
+          allow-popups-to-escape-sandbox
+          allow-presentation
+          allow-scripts
+          allow-same-origin
+          allow-downloads
+          allow-top-navigation
+        "
+
+        style="border:none; width:100%; height:100%;"
+      ></iframe>
+
     </div>
   </div>
+</div>
